@@ -1,6 +1,7 @@
 package com.stacksherpa;
 
 import io.micronaut.http.HttpResponse;
+import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
@@ -10,21 +11,20 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 
 @Slf4j
-@Controller("/invocations")
+@Controller("/jobs")
 @RequiredArgsConstructor
-public class InvocationController {
+public class JobController {
 
-  private final InvocationService invocations;
+  private final JobService jobs;
 
   @Get
-  public HttpResponse<List<Invocation>> list() {
-    return HttpResponse.ok(invocations.list());
+  public HttpResponse<List<Job>> list() {
+    return HttpResponse.ok(jobs.list());
   }
 
   @Post
-  public HttpResponse<Void> webhook() {
-    log.info("webhook received");
-    invocations.execute("job.01");
+  public HttpResponse<Void> save(@Body Job job) {
+    jobs.save(job);
     return HttpResponse.accepted();
   }
 
