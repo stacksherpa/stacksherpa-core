@@ -1,6 +1,0 @@
-applicationType: default
-defaultPackage: stacksherpa.core
-testFramework: junit
-sourceLanguage: java
-buildTool: gradle
-features: [app-name, data, data-jpa, docker, file-watch, file-watch-osx, gradle, h2, http-client, java, java-application, jdbc-hikari, junit, logback, management, netty-server, readme, shade, yaml]
